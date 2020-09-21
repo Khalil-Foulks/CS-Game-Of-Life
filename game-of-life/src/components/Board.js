@@ -13,8 +13,8 @@ import React from 'react';
 export default class GameOfLife extends React.Component {
 
     static field = {
-        columnsAmount: 31,
-        rowsAmount: 31,
+        columnsAmount: 25,
+        rowsAmount: 25,
     };
     static cellState = {
         ALIVE: true,
@@ -68,14 +68,15 @@ export default class GameOfLife extends React.Component {
         for (let columnIndex = 0; columnIndex < GameOfLife.field.columnsAmount; columnIndex++) {
             newCells[columnIndex] = [];
             for (let rowIndex = 0; rowIndex < GameOfLife.field.rowsAmount; rowIndex++) {
-                newCells[columnIndex][rowIndex] = this.computeNewCellState(columnIndex, rowIndex) //cell at row and column is dead or alive based on rules
+                newCells[columnIndex][rowIndex] = this.computeNewCellState(columnIndex, rowIndex) // cell at row and column is dead or alive based on computeNewCellState (rules)
             }
         }
 
-        this.setState({generation: this.state.generation += 1})
-        this.setState({cells: newCells})
+        this.setState({generation: this.state.generation += 1}) // increment generation count by 1
+        this.setState({cells: newCells}) // update cells state using newCells
     }
 
+    // rules logic
     computeNewCellState(columnIndex, rowIndex) {
         const aliveNeighboursAmount = this.computeAliveNeighboursAmount(columnIndex, rowIndex);
         const currentCellState = this.state.cells[columnIndex][rowIndex];
@@ -98,7 +99,7 @@ export default class GameOfLife extends React.Component {
     }
 
     computeAliveNeighboursAmount(columnIndex, rowIndex) {
-        let aliveNeighboursAmount = 0;
+        let aliveNeighboursAmount = 0; // # of neigbor cells alive
 
         const neighbourOffsets = [
             [-1, 0], // left (W)
@@ -118,16 +119,16 @@ export default class GameOfLife extends React.Component {
             let newRowOffset = rowIndex + yOffset; //holds count for row index being checked
 
             // Check boundaries
-            if (newColumnOffset < 0 || newColumnOffset > GameOfLife.field.columnsAmount - 1) {
+            if (newColumnOffset < 0 || newColumnOffset > GameOfLife.field.columnsAmount - 1) { // ignores columns that are not neighbors
                 continue; // "jumps over" one iteration in the loop
             }
-            if (newRowOffset < 0 || newRowOffset > GameOfLife.field.rowsAmount - 1) {
-                continue; // "jumps over" one iteration in the loop
+            if (newRowOffset < 0 || newRowOffset > GameOfLife.field.rowsAmount - 1) { // ignores rows that are not neighbors
+                continue; // "jumps over" one iteration in the loop 
             }
 
             const neighbourState = this.state.cells[newColumnOffset][newRowOffset];
             if (neighbourState === GameOfLife.cellState.ALIVE) {
-                aliveNeighboursAmount++;
+                aliveNeighboursAmount++; // increase count by 1 for every neighbor that is alive
             }
         }
 
@@ -221,7 +222,7 @@ export default class GameOfLife extends React.Component {
 
         return (
             <button
-                className="GameOfLife__startGameButton"
+                className="GameOfLife__clearGameButton"
                 onClick={() => this.resetCells()}
                 disabled = {this.isDisabled()}
             >
@@ -238,10 +239,10 @@ export default class GameOfLife extends React.Component {
         return (
             <div className="GameOfLife">
                 <div>
-                    <p>Generation: {this.state.generation}</p>
+                    <p className ='generation'>Generation: {this.state.generation}</p>
+                    {this.renderStartGameButton()}
+                    {this.renderClearGameButton()}
                 </div>
-                {this.renderStartGameButton()}
-                {this.renderClearGameButton()}
                 {this.renderCells()}
                 {this.state.speed}
 

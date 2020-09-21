@@ -53,9 +53,15 @@ table {
   background-image:    linear-gradient(#333 1px, transparent 1px),    linear-gradient(90deg, #333 1px, transparent 1px);
 }
 
+.generation {
+	font-size: 17px;
+	font-weight: bold;
+	margin: 6px 6px 0 0;
+}
+
 .GameOfLife__cells {
 	display: flex;
-	padding-left: 30%;
+	justify-content: center;
 }
 
 .GameOfLife__column {
@@ -78,5 +84,9 @@ table {
 }
 
 .GameOfLife__startGameButton {
-    margin-bottom: 6px;
+    margin: 10px 6px 16px 0;
+}
+
+.GameOfLife__clearGameButton {
+	margin: 6px 6px 6px 0;
 }
