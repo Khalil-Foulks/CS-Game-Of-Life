@@ -30,7 +30,7 @@ export default class GameOfLife extends React.Component {
             cells: this.initializeCells(),
             isGameRunning: false,
             generation: 0,
-            color: ['orange', 'green', 'blue'],
+            color: ['#03c6fc', '#8f00db', 'blue'],
             speed: 1000, // 1sec 
             columns: 25,
             rows: 25,
@@ -163,8 +163,8 @@ export default class GameOfLife extends React.Component {
         for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
             cells[columnIndex] = [];
             for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
-                // randomizes each cell, if number is 1 cell is dead, otherwize it's alive
-                cells[columnIndex][rowIndex] = Math.floor(Math.random() * 2) + 1 === 1 ? GameOfLife.cellState.DEAD : GameOfLife.cellState.ALIVE; 
+                // randomizes each cell between 1-3, if number is > 1 cell, is dead, otherwize it's alive
+                cells[columnIndex][rowIndex] = Math.floor(Math.random() * 3) + 1 > 1 ? GameOfLife.cellState.DEAD : GameOfLife.cellState.ALIVE; 
             }
         }
 
