@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Rules = () => {
+const GameRules = () => {
     return (
         <div className ='rules'>
             <h2>Rules</h2>
@@ -16,4 +16,4 @@ const Rules = () => {
     )
 }
 
-export default Rules;
+export default GameRules;

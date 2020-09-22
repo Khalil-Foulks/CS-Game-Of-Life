@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import Board from './components/Board';
-// import Rules from './components/Rules';
+import GameRules from './components/GameRules';
 
 function App() {
   return (
     <div className="App">
       <h1>Conway's Game Of Life</h1>
       <div className = 'main_container'>
-        <Rules/>
+        <GameRules/>
         <Board/>
       </div>
     </div>
