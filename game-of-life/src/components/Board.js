@@ -174,36 +174,17 @@ export default class GameOfLife extends React.Component {
 
     // resets grid and makes it 25x25
     grid25x25() {
-        let cells = [];
         this.setState({columns: 25})
         this.setState({rows: 25})
-
-        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
-            cells[columnIndex] = [];
-            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
-                cells[columnIndex][rowIndex] = GameOfLife.cellState.DEAD;
-            }
-        }
-
-        this.setState({cells: cells})
-        this.setState({generation: 0})
+        this.resetCells()
     }
 
     // resets grid and makes it 15x15
     grid15x15() {
-        let cells = [];
+
         this.setState({columns: 15})
         this.setState({rows: 15})
-
-        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
-            cells[columnIndex] = [];
-            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
-                cells[columnIndex][rowIndex] = GameOfLife.cellState.DEAD;
-            }
-        }
-
-        this.setState({cells: cells})
-        this.setState({generation: 0})
+        this.resetCells()
     }
 
     // inverses state
@@ -353,7 +334,7 @@ export default class GameOfLife extends React.Component {
                     {this.renderGrid25x25()}
                 </div>
                 {this.renderCells()}
-
+        
                 <div className='speedCounter'>Speed: {this.state.speed}</div> 
                 <form> 
                     <select value={this.state.value} onChange={this.handleChange}> 
