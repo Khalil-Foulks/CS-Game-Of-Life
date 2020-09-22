@@ -31,11 +31,13 @@ export default class GameOfLife extends React.Component {
             isGameRunning: false,
             generation: 0,
             color: ['orange', 'green', 'blue'],
-            speed: 1000 // 1sec
+            speed: 1000, // 1sec 
+            columns: 25,
+            rows: 25,
         };
 
         this.handleChange = this.handleChange.bind(this);
-        setInterval(() => this.live(), this.state.speed)
+        var nIntervId = setInterval(() => this.live(), this.state.speed) 
     }
 
     // Creates the cells for the grid
@@ -65,9 +67,9 @@ export default class GameOfLife extends React.Component {
 
         const newCells = [];
         
-        for (let columnIndex = 0; columnIndex < GameOfLife.field.columnsAmount; columnIndex++) {
+        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
             newCells[columnIndex] = [];
-            for (let rowIndex = 0; rowIndex < GameOfLife.field.rowsAmount; rowIndex++) {
+            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
                 newCells[columnIndex][rowIndex] = this.computeNewCellState(columnIndex, rowIndex) // cell at row and column is dead or alive based on computeNewCellState (rules)
             }
         }
@@ -119,10 +121,10 @@ export default class GameOfLife extends React.Component {
             let newRowOffset = rowIndex + yOffset; //holds count for row index being checked
 
             // Check boundaries
-            if (newColumnOffset < 0 || newColumnOffset > GameOfLife.field.columnsAmount - 1) { // ignores columns that are not neighbors
+            if (newColumnOffset < 0 || newColumnOffset > this.state.columns - 1) { // ignores columns that are not neighbors
                 continue; // "jumps over" one iteration in the loop
             }
-            if (newRowOffset < 0 || newRowOffset > GameOfLife.field.rowsAmount - 1) { // ignores rows that are not neighbors
+            if (newRowOffset < 0 || newRowOffset > this.state.rows - 1) { // ignores rows that are not neighbors
                 continue; // "jumps over" one iteration in the loop 
             }
 
@@ -139,12 +141,13 @@ export default class GameOfLife extends React.Component {
 
     // User Interactions
 
+    // resets grid to all dead cells
     resetCells() {
         let cells = [];
 
-        for (let columnIndex = 0; columnIndex < GameOfLife.field.columnsAmount; columnIndex++) {
+        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
             cells[columnIndex] = [];
-            for (let rowIndex = 0; rowIndex < GameOfLife.field.rowsAmount; rowIndex++) {
+            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
                 cells[columnIndex][rowIndex] = GameOfLife.cellState.DEAD;
             }
         }
@@ -153,6 +156,41 @@ export default class GameOfLife extends React.Component {
         this.setState({generation: 0})
     }
 
+    // resets grid and makes it 25x25
+    grid25x25() {
+        let cells = [];
+        this.setState({columns: 25})
+        this.setState({rows: 25})
+
+        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
+            cells[columnIndex] = [];
+            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
+                cells[columnIndex][rowIndex] = GameOfLife.cellState.DEAD;
+            }
+        }
+
+        this.setState({cells: cells})
+        this.setState({generation: 0})
+    }
+
+    // resets grid and makes it 15x15
+    grid15x15() {
+        let cells = [];
+        this.setState({columns: 15})
+        this.setState({rows: 15})
+
+        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
+            cells[columnIndex] = [];
+            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
+                cells[columnIndex][rowIndex] = GameOfLife.cellState.DEAD;
+            }
+        }
+
+        this.setState({cells: cells})
+        this.setState({generation: 0})
+    }
+
+    // inverses state
     toggleCellState(columnIndex, rowIndex) {
         const newCellsState = this.state.cells; //current cell state
 
@@ -178,6 +216,7 @@ export default class GameOfLife extends React.Component {
 
     // Rendering
 
+    //renders grid
     renderCells() {
         return (
             <div className="GameOfLife__cells">
@@ -188,6 +227,7 @@ export default class GameOfLife extends React.Component {
         );
     }
 
+    //renders columns
     renderColumn(rows, columnIndex) {
         return (
             <div className="GameOfLife__column" key={`column_${columnIndex}`}>
@@ -204,6 +244,7 @@ export default class GameOfLife extends React.Component {
         )
     }
 
+    //start button
     renderStartGameButton() {
         const buttonLabel = this.state.isGameRunning ? 'Stop' : 'Start';
 
@@ -217,6 +258,7 @@ export default class GameOfLife extends React.Component {
         )
     }
 
+    //clear button
     renderClearGameButton() {
         const buttonLabel = 'Clear'
 
@@ -231,8 +273,41 @@ export default class GameOfLife extends React.Component {
         )
     }
 
+    renderGrid25x25() {
+        const buttonLabel = '25x25'
+
+        return (
+            <button
+                className="GameOfLife__clearGameButton"
+                onClick={() => this.grid25x25()}
+                disabled = {this.isDisabled()}
+            >
+                {buttonLabel}
+            </button>
+        )
+    }
+
+    //makes 15x15 grid button
+    renderGrid15x15() {
+        const buttonLabel = '15x15'
+
+        return (
+            <button
+                className="GameOfLife__clearGameButton"
+                onClick={() => this.grid15x15()}
+                disabled = {this.isDisabled()}
+            >
+                {buttonLabel}
+            </button>
+        )
+    }
+
+    // BROKEN
+    // handles speed change for dropdown
     handleChange(event) {
         this.setState({speed: parseInt(event.target.value)});
+        clearInterval(this.nIntervId)
+        setInterval(() => this.live(), this.state.speed)
     }
 
     render() {
@@ -242,12 +317,14 @@ export default class GameOfLife extends React.Component {
                     <p className ='generation'>Generation: {this.state.generation}</p>
                     {this.renderStartGameButton()}
                     {this.renderClearGameButton()}
+                    {this.renderGrid15x15()}
+                    {this.renderGrid25x25()}
                 </div>
                 {this.renderCells()}
-                <div className='speedCounter'>Speed: {this.state.speed}</div>
 
-                <form>
-                    <select value={this.state.value} onChange={this.handleChange}>
+                <div className='speedCounter'>Speed: {this.state.speed}</div> 
+                <form> 
+                    <select value={this.state.value} onChange={this.handleChange}> 
                         <option value='1000'>Normal</option>
                         <option value='2000'>Slow</option>
                         <option value='500'>Fast</option>
