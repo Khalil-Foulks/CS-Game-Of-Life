@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Board from './components/Board';
-import Rules from './components/Rules';
+// import Rules from './components/Rules';
 
 function App() {
   return (
