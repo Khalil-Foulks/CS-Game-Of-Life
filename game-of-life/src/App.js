@@ -7,8 +7,10 @@ function App() {
   return (
     <div className="App">
       <h1>Conway's Game Of Life</h1>
-      <Rules/>
-      <Board/>
+      <div className = 'main_container'>
+        <Rules/>
+        <Board/>
+      </div>
     </div>
   );
 }

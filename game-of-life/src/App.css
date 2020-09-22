@@ -1,62 +1,52 @@
-html, body, div, span, applet, object, iframe,
-p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+p {
+	margin: 0 0 .5em 0em;
 }
 
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+span {
+	font-weight: bold;
 }
 
 .App {
   text-align: center;
 }
 
-.Board {  
-  position: relative; 
-  margin: 0 auto;  
-  background-color: #000;
-  background-image:    linear-gradient(#333 1px, transparent 1px),    linear-gradient(90deg, #333 1px, transparent 1px);
+.main_container {
+	display: flex;
+	justify-content: center;
 }
+
+.rules {
+	border: 1px solid black;
+	width: 70%;
+	margin: 0 0 0 2%;
+	padding: 0 2%;
+	display: flex;
+	flex-direction: column;
+}
+
+.rules p{
+	text-align: left;
+}
+
+ol {
+	text-align: left;
+	padding: 0 0 0 2%;
+}
+
+li {
+	text-align: left;
+	padding: 0 0 0 2%;
+}
+
+.GameOfLife {
+	width: 100%;
+}
+
 
 .generation {
 	font-size: 17px;
 	font-weight: bold;
-	margin: 6px 6px 0 0;
+	margin: 0 6px 0 0;
 }
 
 .GameOfLife__cells {

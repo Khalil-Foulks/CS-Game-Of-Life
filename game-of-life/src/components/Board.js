@@ -325,7 +325,7 @@ export default class GameOfLife extends React.Component {
     render() {
         return (
             <div className="GameOfLife">
-                <div>
+                <div className="GameOfLifeInfo">
                     <p className ='generation'>Generation: {this.state.generation}</p>
                     {this.renderStartGameButton()}
                     {this.renderClearGameButton()}
