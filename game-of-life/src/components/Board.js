@@ -84,15 +84,15 @@ export default class GameOfLife extends React.Component {
         const currentCellState = this.state.cells[columnIndex][rowIndex];
 
         if (currentCellState === GameOfLife.cellState.ALIVE) {
-            if (aliveNeighboursAmount < 2) { // fewer than 2 neighbors = dead
+            if (aliveNeighboursAmount < 2) {
                 return GameOfLife.cellState.DEAD;
-            } else if (aliveNeighboursAmount === 2 || aliveNeighboursAmount === 3) { // 2 or 3 neighbors = alive
+            } else if (aliveNeighboursAmount === 2 || aliveNeighboursAmount === 3) {
                 return GameOfLife.cellState.ALIVE; 
-            } else if (aliveNeighboursAmount > 3) { // greater than 3 neighbors = dead
+            } else if (aliveNeighboursAmount > 3) {
                 return GameOfLife.cellState.DEAD;
             }
         } else {
-            if (aliveNeighboursAmount === 3) { // exactly 3 neighbors = dead
+            if (aliveNeighboursAmount === 3) {
                 return GameOfLife.cellState.ALIVE;
             }
         }
@@ -101,7 +101,7 @@ export default class GameOfLife extends React.Component {
     }
 
     computeAliveNeighboursAmount(columnIndex, rowIndex) {
-        let aliveNeighboursAmount = 0; // # of neigbor cells alive
+        let aliveNeighboursAmount = 0;
 
         const neighbourOffsets = [
             [-1, 0], // left (W)

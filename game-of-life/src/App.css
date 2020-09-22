@@ -51,6 +51,10 @@ li {
 	font-size: 18px;
 }
 
+#note{
+	font-size: 16px;
+}
+
 .GameOfLife {
 	width: 100%;
 }
