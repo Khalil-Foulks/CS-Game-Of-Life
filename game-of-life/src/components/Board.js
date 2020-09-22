@@ -35,9 +35,7 @@ export default class GameOfLife extends React.Component {
             columns: 25,
             rows: 25,
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        var nIntervId = setInterval(() => this.live(), this.state.speed) 
+        setInterval(() => this.live(), this.state.speed) 
     }
 
     // Creates the cells for the grid
@@ -314,14 +312,6 @@ export default class GameOfLife extends React.Component {
         )
     }
 
-    // BROKEN
-    // handles speed change for dropdown
-    handleChange(event) {
-        this.setState({speed: parseInt(event.target.value)});
-        clearInterval(this.nIntervId)
-        setInterval(() => this.live(), this.state.speed)
-    }
-
     render() {
         return (
             <div className="GameOfLife">
@@ -334,15 +324,6 @@ export default class GameOfLife extends React.Component {
                     {this.renderGrid25x25()}
                 </div>
                 {this.renderCells()}
-        
-                <div className='speedCounter'>Speed: {this.state.speed}</div> 
-                <form> 
-                    <select value={this.state.value} onChange={this.handleChange}> 
-                        <option value='1000'>Normal</option>
-                        <option value='2000'>Slow</option>
-                        <option value='500'>Fast</option>
-                    </select>
-                </form>
             </div>
         );
     };
