@@ -156,6 +156,22 @@ export default class GameOfLife extends React.Component {
         this.setState({generation: 0})
     }
 
+    // randomizes current grid
+    randomizeCells() {
+        let cells = [];
+
+        for (let columnIndex = 0; columnIndex < this.state.columns; columnIndex++) {
+            cells[columnIndex] = [];
+            for (let rowIndex = 0; rowIndex < this.state.rows; rowIndex++) {
+                // randomizes each cell, if number is 1 cell is dead, otherwize it's alive
+                cells[columnIndex][rowIndex] = Math.floor(Math.random() * 2) + 1 === 1 ? GameOfLife.cellState.DEAD : GameOfLife.cellState.ALIVE; 
+            }
+        }
+
+        this.setState({cells: cells})
+        this.setState({generation: 0})
+    }
+
     // resets grid and makes it 25x25
     grid25x25() {
         let cells = [];
@@ -273,6 +289,21 @@ export default class GameOfLife extends React.Component {
         )
     }
 
+    //random button
+    renderRandomGameButton() {
+        const buttonLabel = 'Random'
+
+        return (
+            <button
+                className="GameOfLife__clearGameButton"
+                onClick={() => this.randomizeCells()}
+                disabled = {this.isDisabled()}
+            >
+                {buttonLabel}
+            </button>
+        )
+    }
+
     renderGrid25x25() {
         const buttonLabel = '25x25'
 
@@ -317,6 +348,7 @@ export default class GameOfLife extends React.Component {
                     <p className ='generation'>Generation: {this.state.generation}</p>
                     {this.renderStartGameButton()}
                     {this.renderClearGameButton()}
+                    {this.renderRandomGameButton()}
                     {this.renderGrid15x15()}
                     {this.renderGrid25x25()}
                 </div>
