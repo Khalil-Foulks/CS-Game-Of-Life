@@ -244,7 +244,7 @@ export default class GameOfLife extends React.Component {
                     {this.renderClearGameButton()}
                 </div>
                 {this.renderCells()}
-                {this.state.speed}
+                <div className='speedCounter'>Speed: {this.state.speed}</div>
 
                 <form>
                     <select value={this.state.value} onChange={this.handleChange}>

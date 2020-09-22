@@ -90,3 +90,11 @@ table {
 .GameOfLife__clearGameButton {
 	margin: 6px 6px 6px 0;
 }
+
+.speedCounter {
+	margin-top: 10px;
+}
+
+form {
+	margin-top: 6px;
+}
