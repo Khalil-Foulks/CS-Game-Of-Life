@@ -34,7 +34,7 @@ span {
 	border-radius: 1%;
 	box-shadow: 10px 12px 10px black;
 	text-shadow: 1.2px .5px .2px black;
-	min-height: 40em;
+	min-height: 44em;
 }
 
 .rules p{
@@ -45,6 +45,7 @@ span {
 ol {
 	text-align: left;
 	padding: 0 0 0 2%;
+	
 }
 
 li {
@@ -192,5 +193,8 @@ button {
 }
 
 form {
-	margin-top: 6px;
+	margin-top: 10px;
 }
+
+
+
