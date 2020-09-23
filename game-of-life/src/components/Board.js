@@ -274,7 +274,7 @@ export default class GameOfLife extends React.Component {
 
         return (
             <button
-                className="GameOfLife__clearGameButton"
+                className="GameOfLife__RandomGameButton miscButton"
                 onClick={() => this.randomizeCells()}
                 disabled = {this.isDisabled()}
             >
@@ -288,7 +288,7 @@ export default class GameOfLife extends React.Component {
 
         return (
             <button
-                className="GameOfLife__clearGameButton"
+                className="GameOfLife__25x25Button miscButton"
                 onClick={() => this.grid25x25()}
                 disabled = {this.isDisabled()}
             >
@@ -303,7 +303,7 @@ export default class GameOfLife extends React.Component {
 
         return (
             <button
-                className="GameOfLife__clearGameButton"
+                className="GameOfLife__15x15Button miscButton"
                 onClick={() => this.grid15x15()}
                 disabled = {this.isDisabled()}
             >
