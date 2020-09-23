@@ -1,8 +1,9 @@
 body {
-	/* color:white;
-	text-shadow: 2px 3px black;
-	background-color: red; */
+	color:white;
+	text-shadow: 2px 2px 0 black;
 	font-family: 'Roboto Slab', serif;
+	background: rgb(3,198,252);
+	background: radial-gradient(circle, rgba(3,198,252,1) 0%, rgba(143,0,219,1) 100%);
 }
 
 p {
@@ -31,8 +32,9 @@ span {
 	display: flex;
 	flex-direction: column;
 	border-radius: 1%;
-	box-shadow: 3px 5px 5px black;
-	text-shadow: 0px .2px .2px black;
+	box-shadow: 10px 12px 10px black;
+	text-shadow: 1.2px .5px .2px black;
+	min-height: 44em;
 }
 
 .rules p{
@@ -43,6 +45,7 @@ span {
 ol {
 	text-align: left;
 	padding: 0 0 0 2%;
+	
 }
 
 li {
@@ -73,13 +76,14 @@ li {
 
 .GameOfLife__column {
     display: flex;
-    flex-direction: column;
+	flex-direction: column;
+	box-shadow: 10px 15px 15px black;
 }
 
 .GameOfLife__cell {
     width: 20px;
     height: 20px;
-    border: 1px solid #c0c0c0;
+	border: 1px solid #c0c0c0;
 }
 
 .GameOfLife__cell--alive {
@@ -90,12 +94,98 @@ li {
     background-color: white;
 }
 
-.GameOfLife__startGameButton {
-    margin: 10px 6px 16px 0;
+button {
+	margin: 6px 6px 6px 0;
 }
 
+.GameOfLife__startGameButton {
+	margin: 10px 6px 16px 0;
+	box-shadow: 3px 4px 0px 0px #16ab3e;
+	background:linear-gradient(to bottom, #81ff7a 5%, #39e352 100%);
+	background-color:#81ff7a;
+	border-radius:15px;
+	border:1px solid #34c256;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #54cc70;
+}
+
+.GameOfLife__startGameButton:hover {
+	background:linear-gradient(to bottom, #39e352 5%, #81ff7a 100%);
+	background-color:#39e352;
+}
+.GameOfLife__startGameButton:active {
+	position:relative;
+	top:1px;
+}
+
+
 .GameOfLife__clearGameButton {
-	margin: 6px 6px 6px 0;
+	box-shadow: 3px 4px 0px 0px #ab1616;
+	background:linear-gradient(to bottom, #ff7a7a 5%, #e33939 100%);
+	background-color:#ff7a7a;
+	border-radius:15px;
+	border:1px solid #c23434;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc5454;
+}
+
+.GameOfLife__clearGameButton:hover {
+	background:linear-gradient(to bottom, #e33939 5%, #ff7a7a 100%);
+	background-color:#e33939;
+}
+.GameOfLife__clearGameButton:active {
+	position:relative;
+	top:1px;
+}
+
+.miscButton {
+	box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 23px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+
+.miscButton:hover {
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+.miscButton:active {
+	position:relative;
+	top:1px;
+}
+
+#notClickable {
+	box-shadow: 3px 4px 0px 0px #555353;
+	background:linear-gradient(to bottom, #8b8989 5%, #8b8989 100%);
+	background-color:#8b8989;
+	border:1px solid #8b8989;
+	text-shadow:0px 1px 0px #8b8989;
+}
+
+#notClickable:hover {
+	background:linear-gradient(to bottom, #8b8989 5%, #8b8989 100%);
+	background-color:#8b8989;
 }
 
 .speedCounter {
@@ -103,5 +193,8 @@ li {
 }
 
 form {
-	margin-top: 6px;
+	margin-top: 10px;
 }
+
+
+

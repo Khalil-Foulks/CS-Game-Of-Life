@@ -21,6 +21,8 @@ export default class GameOfLife extends React.Component {
         DEAD: false,
     };
 
+    intervalID = 0
+
     // Initialization
 
     constructor(props) {
@@ -35,9 +37,8 @@ export default class GameOfLife extends React.Component {
             columns: 25,
             rows: 25,
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        var nIntervId = setInterval(() => this.live(), this.state.speed) 
+        this.intervalID = setInterval(() => this.live(), this.state.speed) 
+        this.handleChange = this.handleChange.bind(this); 
     }
 
     // Creates the cells for the grid
@@ -173,17 +174,17 @@ export default class GameOfLife extends React.Component {
     }
 
     // resets grid and makes it 25x25
-    grid25x25() {
-        this.setState({columns: 25})
-        this.setState({rows: 25})
+    async grid25x25() {
+        await this.setState({columns: 25})
+        await this.setState({rows: 25})
         this.resetCells()
     }
 
     // resets grid and makes it 15x15
-    grid15x15() {
+    async grid15x15() {
 
-        this.setState({columns: 15})
-        this.setState({rows: 15})
+        await this.setState({columns: 15})
+        await this.setState({rows: 15})
         this.resetCells()
     }
 
@@ -258,10 +259,12 @@ export default class GameOfLife extends React.Component {
     //clear button
     renderClearGameButton() {
         const buttonLabel = 'Clear'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
                 className="GameOfLife__clearGameButton"
+                id = {`${clickable}`}
                 onClick={() => this.resetCells()}
                 disabled = {this.isDisabled()}
             >
@@ -273,10 +276,12 @@ export default class GameOfLife extends React.Component {
     //random button
     renderRandomGameButton() {
         const buttonLabel = 'Random'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
-                className="GameOfLife__clearGameButton"
+                className="GameOfLife__RandomGameButton miscButton"
+                id = {`${clickable}`}
                 onClick={() => this.randomizeCells()}
                 disabled = {this.isDisabled()}
             >
@@ -287,10 +292,12 @@ export default class GameOfLife extends React.Component {
 
     renderGrid25x25() {
         const buttonLabel = '25x25'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
-                className="GameOfLife__clearGameButton"
+                className="GameOfLife__25x25Button miscButton"
+                id = {`${clickable}`}
                 onClick={() => this.grid25x25()}
                 disabled = {this.isDisabled()}
             >
@@ -302,10 +309,12 @@ export default class GameOfLife extends React.Component {
     //makes 15x15 grid button
     renderGrid15x15() {
         const buttonLabel = '15x15'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
-                className="GameOfLife__clearGameButton"
+                className="GameOfLife__15x15Button miscButton"
+                id = {`${clickable}`}
                 onClick={() => this.grid15x15()}
                 disabled = {this.isDisabled()}
             >
@@ -314,12 +323,11 @@ export default class GameOfLife extends React.Component {
         )
     }
 
-    // BROKEN
     // handles speed change for dropdown
-    handleChange(event) {
-        this.setState({speed: parseInt(event.target.value)});
-        clearInterval(this.nIntervId)
-        setInterval(() => this.live(), this.state.speed)
+    async handleChange(event) {
+        await this.setState({speed: parseInt(event.target.value)});
+        clearInterval(this.intervalID)
+        this.intervalID = setInterval(() => this.live(), this.state.speed)
     }
 
     render() {
@@ -334,8 +342,7 @@ export default class GameOfLife extends React.Component {
                     {this.renderGrid25x25()}
                 </div>
                 {this.renderCells()}
-        
-                <div className='speedCounter'>Speed: {this.state.speed}</div> 
+                {/* <div className='speedCounter'>Speed: {this.state.speed}</div>  */}
                 <form> 
                     <select value={this.state.value} onChange={this.handleChange}> 
                         <option value='1000'>Normal</option>
