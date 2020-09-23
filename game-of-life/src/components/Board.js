@@ -171,17 +171,17 @@ export default class GameOfLife extends React.Component {
     }
 
     // resets grid and makes it 25x25
-    grid25x25() {
-        this.setState({columns: 25})
-        this.setState({rows: 25})
+    async grid25x25() {
+        await this.setState({columns: 25})
+        await this.setState({rows: 25})
         this.resetCells()
     }
 
     // resets grid and makes it 15x15
-    grid15x15() {
+    async grid15x15() {
 
-        this.setState({columns: 15})
-        this.setState({rows: 15})
+        await this.setState({columns: 15})
+        await this.setState({rows: 15})
         this.resetCells()
     }
 
@@ -256,10 +256,12 @@ export default class GameOfLife extends React.Component {
     //clear button
     renderClearGameButton() {
         const buttonLabel = 'Clear'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
                 className="GameOfLife__clearGameButton"
+                id = {`${clickable}`}
                 onClick={() => this.resetCells()}
                 disabled = {this.isDisabled()}
             >
@@ -271,10 +273,12 @@ export default class GameOfLife extends React.Component {
     //random button
     renderRandomGameButton() {
         const buttonLabel = 'Random'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
                 className="GameOfLife__RandomGameButton miscButton"
+                id = {`${clickable}`}
                 onClick={() => this.randomizeCells()}
                 disabled = {this.isDisabled()}
             >
@@ -285,10 +289,12 @@ export default class GameOfLife extends React.Component {
 
     renderGrid25x25() {
         const buttonLabel = '25x25'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
                 className="GameOfLife__25x25Button miscButton"
+                id = {`${clickable}`}
                 onClick={() => this.grid25x25()}
                 disabled = {this.isDisabled()}
             >
@@ -300,10 +306,12 @@ export default class GameOfLife extends React.Component {
     //makes 15x15 grid button
     renderGrid15x15() {
         const buttonLabel = '15x15'
+        const clickable = this.state.isGameRunning ? 'notClickable' : 'clickable';
 
         return (
             <button
                 className="GameOfLife__15x15Button miscButton"
+                id = {`${clickable}`}
                 onClick={() => this.grid15x15()}
                 disabled = {this.isDisabled()}
             >

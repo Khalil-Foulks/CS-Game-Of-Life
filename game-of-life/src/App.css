@@ -1,6 +1,4 @@
 body {
-	/* 
-	background-color: red; */
 	color:white;
 	text-shadow: 2px 2px 0 black;
 	font-family: 'Roboto Slab', serif;
@@ -174,6 +172,19 @@ button {
 .miscButton:active {
 	position:relative;
 	top:1px;
+}
+
+#notClickable {
+	box-shadow: 3px 4px 0px 0px #555353;
+	background:linear-gradient(to bottom, #8b8989 5%, #8b8989 100%);
+	background-color:#8b8989;
+	border:1px solid #8b8989;
+	text-shadow:0px 1px 0px #8b8989;
+}
+
+#notClickable:hover {
+	background:linear-gradient(to bottom, #8b8989 5%, #8b8989 100%);
+	background-color:#8b8989;
 }
 
 .speedCounter {
