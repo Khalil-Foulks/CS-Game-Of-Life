@@ -6,6 +6,16 @@ body {
 	background: radial-gradient(circle, rgba(3,198,252,1) 0%, rgba(143,0,219,1) 100%);
 }
 
+a {
+	color: whitesmoke;
+}
+
+a:hover {
+	color: #6a35e4;
+	text-shadow:none;
+}
+
+
 p {
 	margin: 0 0 .5em 0em;
 }
@@ -24,7 +34,7 @@ span {
 }
 
 .rules {
-	border: 1px solid black;
+	border: 3px solid black;
 	background-color: cornflowerblue;
 	width: 70%;
 	margin: 0 0 0 2%;
@@ -33,7 +43,7 @@ span {
 	flex-direction: column;
 	border-radius: 1%;
 	box-shadow: 10px 12px 10px black;
-	text-shadow: 1.2px .5px .2px black;
+	text-shadow: 1.4px .8px .2px black;
 	min-height: 44em;
 }
 
@@ -96,6 +106,7 @@ li {
 
 button {
 	margin: 6px 6px 6px 0;
+	font-weight: 600;
 }
 
 .GameOfLife__startGameButton {
@@ -113,6 +124,7 @@ button {
 	padding:7px 25px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #54cc70;
+	font-weight: 600;
 }
 
 .GameOfLife__startGameButton:hover {
@@ -139,6 +151,7 @@ button {
 	padding:7px 25px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #cc5454;
+	font-weight: 600;
 }
 
 .GameOfLife__clearGameButton:hover {
@@ -193,8 +206,70 @@ button {
 }
 
 form {
-	margin-top: 10px;
+	margin-top: 20px;
+	text-shadow: none;
 }
 
-
-
+.custom-dropdown {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+  
+  .custom-dropdown select {
+	background-color: #1abc9c;
+	color: black;
+	font-weight: 600;
+	font-size: inherit;
+	padding: .5em;
+	padding-right: 2.5em;	
+	border: 0;
+	margin: 0;
+	border-radius: 3px;
+	text-indent: 0.01px;
+	text-overflow: '';
+	appearance: none;
+	-webkit-appearance:none;
+	-moz-appearance: none;
+}
+  
+  .custom-dropdown::before,
+  .custom-dropdown::after {
+	content: "";
+	position: absolute;
+	pointer-events: none;
+}
+  
+  .custom-dropdown::after { /*  Custom dropdown arrow */
+	content: "\25BC";
+	height: 1em;
+	font-size: .625em;
+	line-height: 1;
+	right: 1.2em;
+	top: 50%;
+	margin-top: -.5em;
+}
+  
+  .custom-dropdown::before { /*  Custom dropdown arrow cover */
+	width: 2em;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border-radius: 0 3px 3px 0;
+}
+  
+  .custom-dropdown select[disabled] {
+	color: rgba(0,0,0,.3);
+}
+  
+  .custom-dropdown select[disabled]::after {
+	color: rgba(0,0,0,.1);
+}
+  
+  .custom-dropdown::before {
+	background-color: rgba(0,0,0,.15);
+}
+  
+  .custom-dropdown::after {
+	color: rgba(0,0,0,.4);
+}

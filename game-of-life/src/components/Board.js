@@ -23,7 +23,7 @@ export default class GameOfLife extends React.Component {
 
     intervalID = 0
 
-    // Initialization
+// Initialization
 
     constructor(props) {
         super(props);
@@ -55,9 +55,9 @@ export default class GameOfLife extends React.Component {
         return cells;
     }
 
-    // end Initialization
+// end Initialization
 
-    // Game update logic
+// Game update logic
 
     //double buffering - using application state to create a new state for cells and setting that as the new cell state 
     live() {
@@ -138,9 +138,9 @@ export default class GameOfLife extends React.Component {
         return aliveNeighboursAmount;
     }
 
-    // end Game update logic
+// end Game update logic
 
-    // User Interactions
+// User Interactions
 
     // resets grid to all dead cells
     resetCells() {
@@ -210,9 +210,9 @@ export default class GameOfLife extends React.Component {
         return true
     }
 
-    // end User Interactions
+// end User Interactions
 
-    // Rendering
+// Rendering
 
     //renders grid
     renderCells() {
@@ -343,7 +343,7 @@ export default class GameOfLife extends React.Component {
                 </div>
                 {this.renderCells()}
                 {/* <div className='speedCounter'>Speed: {this.state.speed}</div>  */}
-                <form> 
+                <form className="custom-dropdown"> 
                     <select value={this.state.value} onChange={this.handleChange}> 
                         <option value='1000'>Normal</option>
                         <option value='2000'>Slow</option>
@@ -354,6 +354,6 @@ export default class GameOfLife extends React.Component {
         );
     };
 
-    // end Rendering
+// end Rendering
 
 }
