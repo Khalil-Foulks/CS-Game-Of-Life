@@ -234,7 +234,7 @@ export default class GameOfLife extends React.Component {
                     return <div
                         className={`GameOfLife__cell GameOfLife__cell--${cellModifier}`}
                         key={`cell_${columnIndex}_${rowIndex}`}
-                        onClick={() => this.toggleCellState(columnIndex, rowIndex)}
+                        onClick={this.state.isGameRunning ? false : () => this.toggleCellState(columnIndex, rowIndex)}
                         style={cellState === GameOfLife.cellState.ALIVE ? {backgroundColor: `${this.state.color[Math.floor(Math.random() * 3)]}`} : {backgroundColor: 'white'}}
                     />
                 })}
